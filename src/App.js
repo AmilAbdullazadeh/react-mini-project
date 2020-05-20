@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './Navbar';
+import CategoryList from "./CategoryList";
+import ProductList from "./ProductList";
+import {Container, Row, Col} from 'reactstrap';
 
+// jsx - javascript xml
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Container>
+                <Row>
+                    <Navbar/>
+                </Row>
+                <Row>
+                    <Col lg="3" md="4" sm="4" xs="5">
+                        <CategoryList/>
+                    </Col>
+                    <Col lg="9" md="8" sm="8" xs="7">
+                        <ProductList/>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
 }
+
+// Function Comp
+// Class Comp
+// Hooks Comp - react 16.8
 
 export default App;
