@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "./Navbar";
+import Navi from "./Navi";
 import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
 import { Container, Row, Col } from "reactstrap";
@@ -9,7 +9,13 @@ class App extends Component {
   state = {
     currentCategory: "",
     products: [],
+    cart: [],
   };
+
+  //   constructor(props) {
+  //     super(props);
+  //     this.changeCategory = this.changeCategory.bind(this)
+  //   }
 
   // arrowFunction
   changeCategory = (category) => {
@@ -17,12 +23,28 @@ class App extends Component {
     this.getProducts(category.id);
   };
 
+  addToCart = (product) => {
+    let newCart = this.state.cart;
+    var addedItem = newCart.find((c) => c.product.id === product.id);
+    if (addedItem) {
+      addedItem.quantity += 1;
+    } else {
+      newCart.push({ product: product, quantity: 1 });
+    }
+    this.setState({ cart: newCart });
+    console.info(this.state.cart);
+  };
+
+  removeFromCart = (product) => {
+    let newCart = this.state.cart.filter((c) => c.product.id !== product.id);
+    this.setState({ cart: newCart });
+  };
+
   componentDidMount() {
     this.getProducts();
   }
 
   getProducts = (categoryId) => {
-    console.warn(categoryId);
     let url = "http://localhost:3000/products";
     if (categoryId) {
       url += "?categoryId=" + categoryId;
@@ -39,9 +61,7 @@ class App extends Component {
     return (
       <div>
         <Container>
-          <Row>
-            <Navbar />
-          </Row>
+          <Navi removeFromCart={this.removeFromCart} cart={this.state.cart} />
           <Row>
             <Col lg="3" md="4" sm="4" xs="5">
               <CategoryList
@@ -55,6 +75,7 @@ class App extends Component {
                 products={this.state.products}
                 changeCategory={this.changeCategory}
                 currentCategory={this.state.currentCategory}
+                addToCart={this.addToCart}
                 info={productInfo}
               />
             </Col>
