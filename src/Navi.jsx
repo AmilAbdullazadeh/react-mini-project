@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 import CartSummery from "./CartSummery";
 
 class Navi extends Component {
@@ -23,8 +24,8 @@ class Navi extends Component {
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  GitHub
+                <NavLink>
+                  <Link to="form" > Go to Form </Link>
                 </NavLink>
               </NavItem>
               <CartSummery

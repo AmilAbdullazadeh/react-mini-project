@@ -44,8 +44,11 @@ class CartList extends Component {
     return (
       <Container>
         <Row color="danger" className="row">
-          <Alert style={{width: "100%", textAlign: "center", marginTop: "5em"}} color="danger" >
-          Cart is empty
+          <Alert
+            style={{ width: "100%", textAlign: "center", marginTop: "5em" }}
+            color="danger"
+          >
+            Cart is empty
           </Alert>
         </Row>
       </Container>

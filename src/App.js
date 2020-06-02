@@ -4,6 +4,7 @@ import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
 import NotFound from "./NotFound";
 import CartList from "./CartList";
+import SimpleForm from "./SimpleForm";
 import { Container, Row, Col } from "reactstrap";
 import alertify from "alertifyjs";
 import { Switch, Route } from "react-router-dom";
@@ -101,6 +102,7 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route path="/form" component={SimpleForm} />
                 <Route component={NotFound} />
               </Switch>
             </Col>
